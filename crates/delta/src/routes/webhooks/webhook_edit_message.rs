@@ -75,7 +75,7 @@ pub async fn webhook_edit_message(
 
     message.update(db, partial, vec![]).await?;
 
-    // Queue up a task for processing embeds if the we have sufficient permissions
+    // Queue up a task for processing embeds
     if let Some(content) = edit.content {
         queue(message.channel.to_string(), message.id.to_string(), content).await;
     }
